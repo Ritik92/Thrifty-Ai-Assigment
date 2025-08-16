@@ -20,7 +20,7 @@ assignment_thrifty/
 **Task 1 - Longest Palindrome:**
 ```bash
 cd "task 1"
-node longest_palindrome.js
+python longest_palindrome.py
 ```
 
 **Task 2 - Real-time Chat:**
