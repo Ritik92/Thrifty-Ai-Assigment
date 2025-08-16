@@ -6,7 +6,7 @@ const socket = io('http://localhost:3001');
 
 function App() {
   const [userName, setUserName] = useState('');
-  const [userColor, setUserColor] = useState('#007bff');
+  const [userColor, setUserColor] = useState('#3b82f6');
   const [joined, setJoined] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -18,7 +18,7 @@ function App() {
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
 
-  const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8', '#6610f2', '#e83e8c', '#fd7e14'];
+  const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#84cc16', '#f97316'];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -138,10 +138,10 @@ function App() {
 
   const getSentimentColor = (sentiment) => {
     switch (sentiment) {
-      case 'positive': return '#28a745';
-      case 'negative': return '#dc3545';
-      case 'neutral': return '#6c757d';
-      default: return '#ffc107';
+      case 'positive': return '#10b981';
+      case 'negative': return '#ef4444';
+      case 'neutral': return '#6b7280';
+      default: return '#f59e0b';
     }
   };
 
@@ -178,7 +178,7 @@ function App() {
     return (
       <div className="join-container">
         <div className="join-form">
-          <h2>🚀 Join Global Chat</h2>
+          <h2>Join Chat</h2>
           <form onSubmit={handleJoin}>
             <input
               type="text"
@@ -188,7 +188,7 @@ function App() {
               required
             />
             <div className="color-picker">
-              <p>Pick your color:</p>
+              <p>Choose your color</p>
               <div className="colors">
                 {colors.map(color => (
                   <div
@@ -200,7 +200,7 @@ function App() {
                 ))}
               </div>
             </div>
-            <button type="submit">Join Chat 💬</button>
+            <button type="submit">Join Chat</button>
           </form>
         </div>
       </div>
@@ -211,19 +211,19 @@ function App() {
     <div className="chat-container">
       <div className="chat-header">
         <div className="header-left">
-          <h2>💬 Global Chat</h2>
-          <span className="user-info">Welcome, <strong style={{color: userColor}}>{userName}</strong>!</span>
+          <h2>Chat</h2>
+          <span className="user-info">Welcome, <strong style={{color: userColor}}>{userName}</strong></span>
         </div>
         <div className="header-right">
-          <span className="user-count">👥 {userCount} online</span>
-          <button onClick={fetchStats} className="stats-btn">📊 Stats</button>
+          <span className="user-count">{userCount} online</span>
+          <button onClick={fetchStats} className="stats-btn">Statistics</button>
         </div>
       </div>
 
       {showStats && stats && (
         <div className="stats-overlay" onClick={() => setShowStats(false)}>
           <div className="stats-modal" onClick={e => e.stopPropagation()}>
-            <h3>📊 Chat Statistics</h3>
+            <h3>Chat Statistics</h3>
             <div className="stats-grid">
               <div className="stat-item">
                 <span className="stat-number">{stats.totalMessages}</span>
@@ -246,15 +246,15 @@ function App() {
               <h4>Sentiment Breakdown</h4>
               <div className="sentiment-bars">
                 <div className="sentiment-bar">
-                  <span>😊 Positive: {stats.sentimentBreakdown.positive}</span>
+                  <span>Positive: {stats.sentimentBreakdown.positive}</span>
                   <div className="bar positive" style={{width: `${(stats.sentimentBreakdown.positive / stats.totalMessages) * 100}%`}}></div>
                 </div>
                 <div className="sentiment-bar">
-                  <span>😐 Neutral: {stats.sentimentBreakdown.neutral}</span>
+                  <span>Neutral: {stats.sentimentBreakdown.neutral}</span>
                   <div className="bar neutral" style={{width: `${(stats.sentimentBreakdown.neutral / stats.totalMessages) * 100}%`}}></div>
                 </div>
                 <div className="sentiment-bar">
-                  <span>😢 Negative: {stats.sentimentBreakdown.negative}</span>
+                  <span>Negative: {stats.sentimentBreakdown.negative}</span>
                   <div className="bar negative" style={{width: `${(stats.sentimentBreakdown.negative / stats.totalMessages) * 100}%`}}></div>
                 </div>
               </div>
@@ -268,7 +268,7 @@ function App() {
         {messages.map((message) => (
           <div key={message.id} className={`message ${message.userId === userName ? 'own-message' : ''}`}>
             <div className="message-header">
-              <strong style={{color: message.userId === userName ? userColor : '#007bff'}}>
+              <strong style={{color: message.userId === userName ? userColor : '#f4f4f5'}}>
                 {message.userId}
               </strong>
               <span className="timestamp">
@@ -324,12 +324,12 @@ function App() {
       <form onSubmit={handleSendMessage} className="message-form">
         <input
           type="text"
-          placeholder="Type your message... 💭"
+          placeholder="Type your message..."
           value={newMessage}
           onChange={handleTyping}
           required
         />
-        <button type="submit">Send 🚀</button>
+        <button type="submit">Send</button>
       </form>
     </div>
   );

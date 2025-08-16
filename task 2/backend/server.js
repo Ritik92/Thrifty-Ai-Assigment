@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
-
+const dotenv =require("dotenv");
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -14,6 +14,7 @@ const io = socketIo(server, {
 
 app.use(express.json());
 app.use(cors());
+dotenv.config();
 
 // In-memory storage for messages and users
 let messages = [];
@@ -22,7 +23,7 @@ let messageId = 1;
 
 // Enhanced sentiment analysis using Gemini API
 async function analyzeSentimentWithGemini(text) {
-  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  const GEMINI_API_KEY=process.env.GEMINI_API_KEY;
   
   if (!GEMINI_API_KEY) {
     console.log('Gemini API key not found, using fallback analysis');
@@ -30,7 +31,7 @@ async function analyzeSentimentWithGemini(text) {
   }
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
