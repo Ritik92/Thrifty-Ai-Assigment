@@ -2,6 +2,12 @@
 
 My solutions for the three coding tasks with some extra features I added for fun.
 
+## Demo Video
+
+[![Watch the demo](https://img.youtube.com/vi/5ObDQLy4_rM/hqdefault.jpg)](https://youtu.be/5ObDQLy4_rM)
+
+
+
 ## What's Inside
 
 ```
